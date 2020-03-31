@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#202020">
+    </androidx.appcompat.widget.Toolbar>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="1"
+           android:orientation="vertical"
+           android:gravity="center">
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:background="@drawable/cv_shape"
+               android:orientation="horizontal"
+               android:layout_marginTop="10dp">
+
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/sundayCV"
+                   android:layout_width="40dp"
+                   android:layout_height="40dp"
+                   app:cardCornerRadius="20dp"
+                   android:backgroundTint="#448AFF"
+                   android:layout_margin="2dp">
+
+
+                   <TextView
+                       android:id="@+id/sundayTV"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:textSize="20sp"
+                       android:textAlignment="center"
+                       android:gravity="center"
+                       android:text="Su"
+                       android:textColor="#FFFFFF"
+                       android:fontFamily="sans-serif-light"
+                       android:layout_gravity="center"/>
+
+
+               </androidx.cardview.widget.CardView>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/mondayCV"
+                   android:layout_width="40dp"
+                   android:layout_height="40dp"
+                   app:cardCornerRadius="20dp"
+                   android:backgroundTint="#448AFF"
+                   android:layout_margin="2dp">
+
+
+                   <TextView
+                       android:id="@+id/mondayTV"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:textSize="20sp"
+                       android:textAlignment="center"
+                       android:gravity="center"
+                       android:text="M"
+                       android:textColor="#FFFFFF"
+                       android:fontFamily="sans-serif-light" />
+
+
+               </androidx.cardview.widget.CardView>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/tuesdayCV"
+                   android:layout_width="40dp"
+                   android:layout_height="40dp"
+                   app:cardCornerRadius="20dp"
+                   android:backgroundTint="#448AFF"
+                   android:layout_margin="2dp">
+
+
+                   <TextView
+                       android:id="@+id/tuesdayTV"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:textSize="20sp"
+                       android:textAlignment="center"
+                       android:gravity="center"
+                       android:text="Tu"
+                       android:textColor="#FFFFFF"
+                       android:fontFamily="sans-serif-light" />
+
+
+               </androidx.cardview.widget.CardView>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/wednesdayCV"
+                   android:layout_width="40dp"
+                   android:layout_height="40dp"
+                   app:cardCornerRadius="20dp"
+                   android:backgroundTint="#448AFF"
+                   android:layout_margin="2dp">
+
+
+                   <TextView
+                       android:id="@+id/wednesdayTV"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:textSize="20sp"
+                       android:textAlignment="center"
+                       android:gravity="center"
+                       android:text="W"
+                       android:textColor="#FFFFFF"
+                       android:fontFamily="sans-serif-light" />
+
+
+               </androidx.cardview.widget.CardView>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/thursdayCV"
+                   android:layout_width="40dp"
+                   android:layout_height="40dp"
+                   app:cardCornerRadius="20dp"
+                   android:backgroundTint="#448AFF"
+                   android:layout_margin="2dp">
+
+
+                   <TextView
+                       android:id="@+id/thursdayTV"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:textSize="20sp"
+                       android:textAlignment="center"
+                       android:gravity="center"
+                       android:text="Th"
+                       android:textColor="#FFFFFF"
+                       android:fontFamily="sans-serif-light" />
+
+
+               </androidx.cardview.widget.CardView>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/fridayCV"
+                   android:layout_width="40dp"
+                   android:layout_height="40dp"
+                   app:cardCornerRadius="20dp"
+                   android:backgroundTint="#448AFF"
+                   android:layout_margin="2dp">
+
+
+                   <TextView
+                       android:id="@+id/fridayTV"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:textSize="20sp"
+                       android:textAlignment="center"
+                       android:gravity="center"
+                       android:text="F"
+                       android:textColor="#FFFFFF"
+                       android:fontFamily="sans-serif-light" />
+
+
+               </androidx.cardview.widget.CardView>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/saturdayCV"
+                   android:layout_width="40dp"
+                   android:layout_height="40dp"
+                   app:cardCornerRadius="20dp"
+                   android:backgroundTint="#448AFF"
+                   android:layout_margin="2dp">
+
+
+                   <TextView
+                       android:id="@+id/saturdayTV"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:textSize="20sp"
+                       android:textAlignment="center"
+                       android:gravity="center"
+                       android:text="Sa"
+                       android:textColor="#FFFFFF"
+                       android:fontFamily="sans-serif-light"/>
+
+
+               </androidx.cardview.widget.CardView>
+
+
+           </LinearLayout>
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <Button
+                   android:id="@+id/morningAlarmButton"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Morning"
+                   android:textAllCaps="false"
+                   android:textSize="16sp"
+                   android:layout_gravity="center"
+                   android:layout_margin="5dp"/>
+               <Button
+                   android:id="@+id/eveningAlarmButton"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Evening"
+                   android:textAllCaps="false"
+                   android:textSize="16sp"
+                   android:layout_gravity="center"
+                   android:layout_margin="5dp"/>
+               <Button
+                   android:id="@+id/nightAlarmButton"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Night"
+                   android:textAllCaps="false"
+                   android:textSize="16sp"
+                   android:layout_gravity="center"
+                   android:layout_margin="5dp"/>
+           </LinearLayout>
+       </LinearLayout>
+
+
+</LinearLayout>
