@@ -1,7 +1,6 @@
 package bd.com.nabdroid.medicationreminder;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -12,7 +11,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -21,7 +19,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     private TextView sundayTV, mondayTV, tuesdayTV, wednesdayTV, thursdayTV, fridayTV, saturdayTV;
-    private Button morningAlarmButton, eveningAlarmButton, nightAlarmButton;
+    private TextView alarmOneTV, alarmTwoTV, alarmThreeTV;
     private Long morningTimeLong, eveningTimeLong, nightTimeLong;
 
     @Override
@@ -35,14 +33,10 @@ public class MainActivity extends AppCompatActivity {
         setNightAlarm(3);
 
         changeDateColors();
-
-
     }
 
 
     private void init() {
-
-
         sundayTV = findViewById(R.id.sundayTV);
         mondayTV = findViewById(R.id.mondayTV);
         tuesdayTV = findViewById(R.id.tuesdayTV);
@@ -50,12 +44,11 @@ public class MainActivity extends AppCompatActivity {
         thursdayTV = findViewById(R.id.thursdayTV);
         fridayTV = findViewById(R.id.fridayTV);
         saturdayTV = findViewById(R.id.saturdayTV);
-
-        morningAlarmButton = findViewById(R.id.morningAlarmButton);
-        eveningAlarmButton = findViewById(R.id.eveningAlarmButton);
-        nightAlarmButton = findViewById(R.id.nightAlarmButton);
-
+        alarmOneTV = findViewById(R.id.morningAlarmButton);
+        alarmTwoTV = findViewById(R.id.eveningAlarmButton);
+        alarmThreeTV = findViewById(R.id.nightAlarmButton);
     }
+
 
     private void getDataFromSharedPreferences() {
         SharedPreferences morningSharedPreferences = getSharedPreferences("morningAlarm", Context.MODE_PRIVATE);
@@ -71,77 +64,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void pickTimeForAlarm(int buttonID) {
-        final int buttonIDLocal = buttonID;
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int hour, int minuit) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY, hour);
-                calendar.set(Calendar.MINUTE, minuit);
-                calendar.set(Calendar.SECOND, 0);
-
-                String string;
-                string = "" + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
-
-                switch (buttonIDLocal) {
-                    case R.id.morningAlarmButton:
-                        string = "Morning: " + string;
-                        morningAlarmButton.setText(string);
-                        break;
-
-                    case R.id.eveningAlarmButton:
-                        string = "Evening: " + string;
-                        eveningAlarmButton.setText(string);
-                        break;
-
-                    case R.id.nightAlarmButton:
-                        string = "Night: " + string;
-                        nightAlarmButton.setText(string);
-
-                        break;
-                }
-
-
-            }
-        };
-
-        Calendar mTime = Calendar.getInstance();
-        int hour = mTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mTime.get(Calendar.MINUTE);
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, false);
-        timePickerDialog.show();
-
-
-    }
-
     public void setMorningAlarm(int id) {
         Calendar calendar = Calendar.getInstance();
-
         if(morningTimeLong!=545454545){
             calendar.setTimeInMillis(morningTimeLong);
-
             String alarmTimeString;
             alarmTimeString = "" + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
-            morningAlarmButton.setText(alarmTimeString);
-
+            alarmOneTV.setText(alarmTimeString);
             AlarmManager alarmManagerMorning = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             Intent morningIntent = new Intent(this, AlertReceiver.class);
             morningIntent.putExtra("id", 10);
-
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, morningIntent, 0);
-
             if (calendar.before(Calendar.getInstance())) {
                 calendar.add(Calendar.DATE, 1);
             }
-            alarmManagerMorning.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-
+            alarmManagerMorning.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, pendingIntent);
         }
-
         else{
-            morningAlarmButton.setText("Pick time from setting");
+            alarmOneTV.setText("Pick time from setting");
         }
     }
+
 
     public void setEveningAlarm(int id) {
         Calendar calendar = Calendar.getInstance();
@@ -149,24 +92,21 @@ public class MainActivity extends AppCompatActivity {
             calendar.setTimeInMillis(eveningTimeLong);
             String alarmTimeString;
             alarmTimeString = "" + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
-            eveningAlarmButton.setText(alarmTimeString);
-
+            alarmTwoTV.setText(alarmTimeString);
             AlarmManager alarmManagerEvening = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             Intent eveningIntent = new Intent(this, AlertReceiver.class);
             eveningIntent.putExtra("id", 20);
-
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, eveningIntent, 0);
-
             if (calendar.before(Calendar.getInstance())) {
                 calendar.add(Calendar.DATE, 1);
             }
-            alarmManagerEvening.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            alarmManagerEvening.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
-
         else{
-            eveningAlarmButton.setText("Pick time from setting");
+            alarmTwoTV.setText("Pick time from setting");
         }
     }
+
 
     public void setNightAlarm(int id) {
         Calendar calendar = Calendar.getInstance();
@@ -174,24 +114,21 @@ public class MainActivity extends AppCompatActivity {
             calendar.setTimeInMillis(nightTimeLong);
             String alarmTimeString;
             alarmTimeString = "" + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
-            nightAlarmButton.setText(alarmTimeString);
-
+            alarmThreeTV.setText(alarmTimeString);
             AlarmManager alarmManagerNight = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             Intent nightIntent = new Intent(this, AlertReceiver.class);
             nightIntent.putExtra("id", 30);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, nightIntent, 0);
-
             if (calendar.before(Calendar.getInstance())) {
                 calendar.add(Calendar.DATE, 1);
             }
-
-            alarmManagerNight.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            alarmManagerNight.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, pendingIntent);
         }
-
         else {
-            nightAlarmButton.setText("Pick time form setting");
+            alarmThreeTV.setText("Pick time form setting");
         }
     }
+
 
     private void changeDateColors() {
         Calendar calendar = Calendar.getInstance();
@@ -251,6 +188,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSettings(View view) {
         startActivity(new Intent(this, SettingsActivity.class));
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

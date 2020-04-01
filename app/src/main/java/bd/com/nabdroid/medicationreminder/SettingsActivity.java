@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class SettingsActivity extends AppCompatActivity {
-    private TextView morningTV, eveningTV, nightTV, ringToneTV;
+    private TextView morningTV, eveningTV, nightTV;
     private Long morningTimeLong, eveningTimeLong, nightTimeLong;
     String ringTonePathString;
 
@@ -38,8 +38,8 @@ public class SettingsActivity extends AppCompatActivity {
         morningTV = findViewById(R.id.morningAlarmTV);
         eveningTV = findViewById(R.id.eveningAlarmTV);
         nightTV = findViewById(R.id.nightAlarmTV);
-        ringToneTV = findViewById(R.id.ringToneTV);
     }
+
     private void getDataFromSharedPreferences() {
         SharedPreferences morningSharedPreferences = getSharedPreferences("morningAlarm", Context.MODE_PRIVATE);
         morningTimeLong = morningSharedPreferences.getLong("morningTimeKey", 545454545);
@@ -57,13 +57,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setDataIntoTV() {
-        ringToneTV.setText(ringTonePathString);
         Calendar calendar = Calendar.getInstance();
         if(morningTimeLong!=545454545) {
             calendar.setTimeInMillis(morningTimeLong);
 
             String alarmTimeString;
-            alarmTimeString = "Morning: " + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
+            alarmTimeString = "Alarm 1:  " + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
             morningTV.setText(alarmTimeString);
         }
 
@@ -71,7 +70,7 @@ public class SettingsActivity extends AppCompatActivity {
             calendar.setTimeInMillis(eveningTimeLong);
 
             String alarmTimeString;
-            alarmTimeString = "Evening: " + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
+            alarmTimeString = "Alarm 2:  " + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
             eveningTV.setText(alarmTimeString);
         }
 
@@ -79,7 +78,7 @@ public class SettingsActivity extends AppCompatActivity {
             calendar.setTimeInMillis(nightTimeLong);
 
             String alarmTimeString;
-            alarmTimeString = "Night: " + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
+            alarmTimeString = "Alarm 3:  " + DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime()) + "";
             nightTV.setText(alarmTimeString);
         }
 
@@ -99,7 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
                 String alarmTimeString;
-                alarmTimeString= "Alarm one: "+DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime())+"";
+                alarmTimeString= "Alarm 1:  "+DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime())+"";
                 morningTV.setText(alarmTimeString);
 
                 Date date = calendar.getTime();
@@ -131,7 +130,7 @@ public class SettingsActivity extends AppCompatActivity {
                 calendar.set(Calendar.SECOND, 0);
 
                 String alarmTimeString;
-                alarmTimeString= "Alarm two: "+DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime())+"";
+                alarmTimeString= "Alarm 2:  "+DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime())+"";
                 eveningTV.setText(alarmTimeString);
 
                 Date date = calendar.getTime();
@@ -163,7 +162,7 @@ public class SettingsActivity extends AppCompatActivity {
                 calendar.set(Calendar.SECOND, 0);
 
                 String alarmTimeString;
-                alarmTimeString= "Alarm three: "+DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime())+"";
+                alarmTimeString= "Alarm 3:  "+DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime())+"";
                 nightTV.setText(alarmTimeString);
 
                 Date date = calendar.getTime();
@@ -185,30 +184,9 @@ public class SettingsActivity extends AppCompatActivity {
         timePickerDialog.show();
     }
 
-
-    public void setRingtone(View view) {
-        Intent intent_upload = new Intent();
-        intent_upload.setType("audio/*");
-        intent_upload.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent_upload,10);
-    }
-
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 10) {
-            if (resultCode == RESULT_OK) {
-                String string = data.getData().getPath();
-                SharedPreferences sharedPreferences = getSharedPreferences("ringTone", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("ringtonePathKey", string);
-                editor.commit();
-            }
-        }
-    }
 }

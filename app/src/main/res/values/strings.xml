@@ -2,5 +2,9 @@
     <string name="app_name">Medication Reminder</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="configure">Configure</string>
+    <string name="alarm_one"><b>Alarm 1</b></string>
+    <string name="alarm_two"><b>Alarm 2</b></string>
+    <string name="alarm_three"><b>Alarm 3</b></string>
     <string name="add_widget">Add widget</string>
+
 </resources>
